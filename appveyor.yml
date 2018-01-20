@@ -1,4 +1,4 @@
-version: 0.9.{build}
+version: 1.0.{build}
 skip_commits:
   message: /NO-BUILD/
   files:
@@ -28,7 +28,7 @@ after_test:
   - ps: |
       $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
       Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
-      bash codecov.sh -f "coverage.xml" -t f1c93abb-9461-43f8-bcde-62cf8387f199
+      bash codecov.sh -f "coverage.xml" -t 8e35b3f4-8408-4c47-949a-25daaa352ea9
 after_build:
   - ps: nuget pack Grumpy.ServiceBase\bin\Release\Grumpy.ServiceBase.nuspec -Version $env:APPVEYOR_BUILD_VERSION
 artifacts:

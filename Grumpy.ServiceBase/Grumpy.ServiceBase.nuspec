@@ -6,7 +6,8 @@
         <title>Grumpy.ServiceBase</title>
         <description>Windows Service Base using Topshelf as a ServiceRunner</description>
         <summary>
-            Base class for building Windows Services, using Topshelf as a Service Host. This base class simplify building cancelable services. 
+            Base class for building Windows Services, using Topshelf as a Service Host. This base class simplify building
+            cancelable windows services.
         </summary>
         <tags>topshelf servicehost</tags>
         <authors>Anders Busted-Janum</authors>
