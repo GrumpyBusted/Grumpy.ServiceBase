@@ -1,4 +1,4 @@
-version: 1.2.{build}
+version: 0.9.{build}
 skip_commits:
   message: /NO-BUILD/
   files:
@@ -23,14 +23,14 @@ test:
     only:
       - '**\bin\**\*.UnitTests.dll'
 test_script:
-  - cmd: "\"%USERPROFILE%\\.nuget\\packages\\OpenCover\\4.6.519\\tools\\OpenCover.Console.exe\" -register:user -target:\"%xunit20%\\xunit.console.x86.exe\" -targetargs:\"Grumpy.Json.UnitTests\\bin\\Release\\Grumpy.Json.UnitTests.dll -noshadow\" -output:\"coverage.xml\" -filter:\"+[Grumpy.Json*]* -[Grumpy.Json.UnitTests*]*\""
+  - cmd: "\"%USERPROFILE%\\.nuget\\packages\\OpenCover\\4.6.519\\tools\\OpenCover.Console.exe\" -register:user -target:\"%xunit20%\\xunit.console.x86.exe\" -targetargs:\"Grumpy.ServiceBase.UnitTests\\bin\\Release\\Grumpy.ServiceBase.UnitTests.dll -noshadow\" -output:\"coverage.xml\" -filter:\"+[Grumpy.ServiceBase*]* -[Grumpy.ServiceBase.UnitTests*]*\""
 after_test:
   - ps: |
       $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
       Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
       bash codecov.sh -f "coverage.xml" -t f1c93abb-9461-43f8-bcde-62cf8387f199
 after_build:
-  - ps: nuget pack Grumpy.Json\bin\Release\Grumpy.Json.nuspec -Version $env:APPVEYOR_BUILD_VERSION
+  - ps: nuget pack Grumpy.ServiceBase\bin\Release\Grumpy.ServiceBase.nuspec -Version $env:APPVEYOR_BUILD_VERSION
 artifacts:
   - path: '**\*.nupkg'
     name: NuGet
