@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 using Grumpy.ServiceBase.Interfaces;
 
 namespace Grumpy.ServiceBase
