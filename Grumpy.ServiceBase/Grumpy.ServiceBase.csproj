@@ -50,7 +50,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Grumpy.ServiceBase.nuspec" />
+    <None Include="Grumpy.ServiceBase.nuspec">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
