@@ -8,8 +8,17 @@ using Topshelf.HostConfigurators;
 
 namespace Grumpy.ServiceBase
 {
+    /// <summary>
+    /// Utility class to be able to start service in one line of main
+    /// </summary>
     public static class TopshelfUtility
     {
+        /// <summary>
+        /// Build a Topshelf Service
+        /// </summary>
+        /// <param name="serviceBuilder"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         [SuppressMessage("ReSharper", "UnusedMethodReturnValue.Global")]
         public static Action<HostConfigurator> BuildService<T>(Func<string, T> serviceBuilder) where T : class, ITopshelfService
         {
@@ -30,6 +39,12 @@ namespace Grumpy.ServiceBase
             };
         }
 
+        /// <summary>
+        /// Build a Topshelf Service
+        /// </summary>
+        /// <param name="serviceBuilder"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         [SuppressMessage("ReSharper", "UnusedMethodReturnValue.Global")]
         public static Action<HostConfigurator> BuildService<T>(Func<T> serviceBuilder) where T : class, ITopshelfService
         {

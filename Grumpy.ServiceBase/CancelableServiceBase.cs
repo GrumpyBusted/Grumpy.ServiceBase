@@ -6,6 +6,7 @@ using Grumpy.ServiceBase.Interfaces;
 
 namespace Grumpy.ServiceBase
 {
+    /// <inheritdoc />
     /// <summary>
     /// Asynchronous Cancelable Base class for services
     /// </summary>
@@ -17,6 +18,7 @@ namespace Grumpy.ServiceBase
         private Task _task;
         private bool _disposed;
 
+        /// <inheritdoc />
         protected CancelableServiceBase()
         {
             _cancellationTokenSource = new CancellationTokenSource();
@@ -33,6 +35,7 @@ namespace Grumpy.ServiceBase
         /// </summary>
         protected virtual void Clean() { }
 
+        /// <inheritdoc />
         /// <summary>
         /// Start the Service
         /// </summary>
@@ -41,6 +44,7 @@ namespace Grumpy.ServiceBase
             _task = new TaskFactory(_cancellationTokenSource.Token).StartNew(Process, _cancellationTokenSource.Token);
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Start the Service
         /// </summary>
@@ -49,6 +53,7 @@ namespace Grumpy.ServiceBase
             Process();
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Cancel underlying task and stop the service
         /// </summary>
@@ -80,6 +85,7 @@ namespace Grumpy.ServiceBase
             Process(_cancellationTokenSource.Token);
         }
 
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);

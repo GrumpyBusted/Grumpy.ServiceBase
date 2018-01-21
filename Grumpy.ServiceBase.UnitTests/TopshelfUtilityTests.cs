@@ -15,5 +15,16 @@ namespace Grumpy.ServiceBase.UnitTests
         {
             return null;
         }
+
+        [Fact]
+        public void CanCreate_Without_ServiceName()
+        {
+            TopshelfUtility.BuildService(BuildA);
+        }
+
+        private static MyService BuildA()
+        {
+            return null;
+        }
     }
 }
