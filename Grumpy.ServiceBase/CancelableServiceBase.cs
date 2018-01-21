@@ -14,15 +14,9 @@ namespace Grumpy.ServiceBase
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public abstract class CancelableServiceBase : ICancelableServiceBase
     {
-        private readonly CancellationTokenSource _cancellationTokenSource;
+        private CancellationTokenSource _cancellationTokenSource;
         private Task _task;
         private bool _disposed;
-
-        /// <inheritdoc />
-        protected CancelableServiceBase()
-        {
-            _cancellationTokenSource = new CancellationTokenSource();
-        }
 
         /// <summary>
         /// Process - The Process will run in a separate Task/Thread, please check the cancellation periodically to exit gracefully when canceled
@@ -41,6 +35,7 @@ namespace Grumpy.ServiceBase
         /// </summary>
         public void Start()
         {
+            _cancellationTokenSource = new CancellationTokenSource();
             _task = new TaskFactory(_cancellationTokenSource.Token).StartNew(Process, _cancellationTokenSource.Token);
         }
 
@@ -91,6 +86,7 @@ namespace Grumpy.ServiceBase
             Dispose(true);
         }
 
+        [SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed")]  
         private void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -98,11 +94,7 @@ namespace Grumpy.ServiceBase
                 _disposed = true;
 
                 if (disposing)
-                {
                     Stop();
-                    _cancellationTokenSource.Dispose();
-                    _task?.Dispose();
-                }
             }
         }
     }
