@@ -73,6 +73,7 @@ namespace Grumpy.ServiceBase
             Clean();
 
             _cancellationTokenSource?.Dispose();
+            _cancellationTokenSource = null;
         }
 
         private void Process()
