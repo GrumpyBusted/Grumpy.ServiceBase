@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using Grumpy.Common;
 using Grumpy.Common.Extensions;
 using Grumpy.ServiceBase.Interfaces;
@@ -22,7 +23,7 @@ namespace Grumpy.ServiceBase
         [SuppressMessage("ReSharper", "UnusedMethodReturnValue.Global")]
         public static Action<HostConfigurator> BuildService<T>(Func<string, T> serviceBuilder) where T : class, ITopshelfService
         {
-            var assemblyInfo = new AssemblyInformation();
+            var assemblyInfo = new AssemblyInformation(Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly());
 
             return x =>
             {
@@ -35,7 +36,6 @@ namespace Grumpy.ServiceBase
                 x.RunAsLocalSystem();
                 x.SetDescription(assemblyInfo.Description);
                 x.SetDisplayName(assemblyInfo.Title + (assemblyInfo.Version.NullOrEmpty() ? "" : $" (Version: {assemblyInfo.Version})"));
-                x.SetServiceName(assemblyInfo.Title);
             };
         }
 
