@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Grumpy.ServiceBase.Interfaces
 {
@@ -7,8 +6,6 @@ namespace Grumpy.ServiceBase.Interfaces
     /// <summary>
     /// Base class for implementing a cancelable service
     /// </summary>
-    [SuppressMessage("ReSharper", "UnusedMemberInSuper.Global")]
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public interface ICancelableServiceBase : IDisposable
     {
         /// <summary>

@@ -52,6 +52,15 @@ namespace Grumpy.ServiceBase.UnitTests
             }
         }
 
+        [Fact]
+        public void CanStartSync()
+        {
+            using (var cut = (ICancelableServiceBase)new MyFastCancelableService())
+            {
+                cut.StartSync();
+            }
+        }
+
         private static ICancelableServiceBase CreateCut()
         {
             return new MyCancelableService();

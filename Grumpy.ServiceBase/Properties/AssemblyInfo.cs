@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Grumpy.ServiceBase")]
+[assembly: AssemblyTitle("Grumpy.WindowsServiceBase")]
 [assembly: AssemblyDescription("Windows Service Base using Topshelf as a ServiceRunner")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Anders Busted-Janum")]
-[assembly: AssemblyProduct("Grumpy.ServiceBase")]
+[assembly: AssemblyProduct("Grumpy.WindowsServiceBase")]
 [assembly: AssemblyCopyright("Copyright © Busted-Janum 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

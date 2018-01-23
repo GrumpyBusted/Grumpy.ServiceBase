@@ -10,8 +10,6 @@ namespace Grumpy.ServiceBase
     /// <summary>
     /// Asynchronous Cancelable Base class for services
     /// </summary>
-    [SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public abstract class CancelableServiceBase : ICancelableServiceBase
     {
         private CancellationTokenSource _cancellationTokenSource;
@@ -45,6 +43,7 @@ namespace Grumpy.ServiceBase
         /// </summary>
         public void StartSync()
         {
+            _cancellationTokenSource = new CancellationTokenSource();
             Process();
         }
 

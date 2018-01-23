@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Anders Busted-Janum")]
-[assembly: AssemblyProduct("Grumpy.ServiceBase.UnitTests")]
+[assembly: AssemblyProduct("Grumpy.WindowsServiceBase.UnitTests")]
 [assembly: AssemblyCopyright("Copyright © Busted-Janum 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -35,10 +35,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CancelableServiceBaseTests.cs" />
+    <Compile Include="Helper\MyFastCancelableService.cs" />
     <Compile Include="Helper\MyCancelableService.cs" />
-    <Compile Include="Helper\MyService.cs" />
+    <Compile Include="Helper\MyTopshelfService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceBaseTests.cs" />
+    <Compile Include="TopshelfServiceBaseTests.cs" />
     <Compile Include="TopshelfUtilityTests.cs" />
   </ItemGroup>
   <ItemGroup>
