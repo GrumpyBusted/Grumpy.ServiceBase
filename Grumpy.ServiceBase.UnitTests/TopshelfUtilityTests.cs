@@ -1,4 +1,5 @@
 ﻿using Grumpy.ServiceBase.UnitTests.Helper;
+using Topshelf;
 using Xunit;
 
 namespace Grumpy.ServiceBase.UnitTests

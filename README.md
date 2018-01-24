@@ -13,26 +13,13 @@ public static class Program
     private static void Main()
     {
         // One line main procedure
-        HostFactory.Run(TopshelfUtility.BuildService(Build));
-    }
-
-    // Build your service, you can use the service name
-    private static MyService Build(string serviceName)
-    {
-        return new MyService(serviceName);
+        TopshelfUtility.Run<MyService>();
     }
 }
 
 // Sample Service
-public class MyService : ServiceBase
+public class MyService : TopshelfServiceBase
 {
-    private readonly string _serviceName;
-_
-    public MyService(string serviceName) 
-    {
-        _serviceName = serviceName;
-    }
-
     protected override void Process(CancellationToken cancellationToken)
     {
         // Start your service
