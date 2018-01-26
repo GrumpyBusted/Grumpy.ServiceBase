@@ -23,8 +23,9 @@ namespace Grumpy.ServiceBase.UnitTests
 
             cut.Set(new WindowsHostSettings("MyService", "1"));
 
-            cut.ServiceName.Should().Be("MyService");
+            cut.ServiceName.Should().Be("MyService$1");
             cut.InstanceName.Should().Be("1");
+            cut.Name.Should().Be("MyService");
         }
 
         private static ITopshelfServiceBase CreateService()

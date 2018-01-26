@@ -14,6 +14,11 @@ namespace Grumpy.ServiceBase.Interfaces
         string ServiceName { get; }
         
         /// <summary>
+        /// Name
+        /// </summary>
+        string Name { get; }
+
+        /// <summary>
         /// Instance Name
         /// </summary>
         string InstanceName { get; }
