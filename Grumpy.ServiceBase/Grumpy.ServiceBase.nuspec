@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
     <metadata>
         <id>Grumpy.ServiceBase</id>
@@ -15,7 +15,7 @@
         <language>en-US</language>
         <copyright>Copyright © Busted-Janum 2018</copyright>
         <dependencies>
-            <dependency id="Grumpy.Common" version="1.2.5" />
+            <dependency id="Grumpy.Common" version="1.2.7" />
             <dependency id="Topshelf" version="[3.3.1]" />
         </dependencies>
     </metadata>
