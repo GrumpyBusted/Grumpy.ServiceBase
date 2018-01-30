@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{43470B1A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grumpy.ServiceBase.UnitTests", "Grumpy.ServiceBase.UnitTests\Grumpy.ServiceBase.UnitTests.csproj", "{C62349F9-8DA3-4FFC-A3BF-80FD3D52E2AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grumpy.ServiceBase.Tester", "Grumpy.ServiceBase.Tester\Grumpy.ServiceBase.Tester.csproj", "{8D1D4206-2316-409B-82EB-94F601091F6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{C62349F9-8DA3-4FFC-A3BF-80FD3D52E2AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C62349F9-8DA3-4FFC-A3BF-80FD3D52E2AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C62349F9-8DA3-4FFC-A3BF-80FD3D52E2AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D1D4206-2316-409B-82EB-94F601091F6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D1D4206-2316-409B-82EB-94F601091F6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D1D4206-2316-409B-82EB-94F601091F6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D1D4206-2316-409B-82EB-94F601091F6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

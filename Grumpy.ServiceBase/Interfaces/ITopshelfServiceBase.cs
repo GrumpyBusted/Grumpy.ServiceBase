@@ -14,19 +14,13 @@ namespace Grumpy.ServiceBase.Interfaces
         string ServiceName { get; }
         
         /// <summary>
-        /// Name
-        /// </summary>
-        string Name { get; }
-
-        /// <summary>
         /// Instance Name
         /// </summary>
         string InstanceName { get; }
 
         /// <summary>
-        /// Set Service Settings
+        /// Topshelf Host Settings
         /// </summary>
-        /// <param name="hostSettings"></param>
-        void Set(HostSettings hostSettings);
+        HostSettings HostSettings { set; }
     }
 }

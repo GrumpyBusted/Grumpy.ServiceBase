@@ -21,7 +21,7 @@ namespace Grumpy.ServiceBase.UnitTests
         {
             var  cut = CreateService();
 
-            cut.Set(new WindowsHostSettings("MyService", "1"));
+            cut.HostSettings = new WindowsHostSettings("MyService", "1");
 
             cut.ServiceName.Should().Be("MyService$1");
             cut.InstanceName.Should().Be("1");

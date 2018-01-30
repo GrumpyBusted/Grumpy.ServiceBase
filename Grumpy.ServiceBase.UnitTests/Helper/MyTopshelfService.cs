@@ -8,10 +8,5 @@ namespace Grumpy.ServiceBase.UnitTests.Helper
         {
             // Start your service
         }
-
-        protected override void Clean()
-        {
-            // Clean up when services is stopped
-        }
     }
 }

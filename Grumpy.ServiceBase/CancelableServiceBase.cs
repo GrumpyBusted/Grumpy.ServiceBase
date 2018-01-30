@@ -1,79 +1,109 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using Grumpy.ServiceBase.Interfaces;
+using Grumpy.Logging;
+using Microsoft.Extensions.Logging;
 
 namespace Grumpy.ServiceBase
 {
-    /// <inheritdoc />
-    /// <summary>
-    /// Asynchronous Cancelable Base class for services
-    /// </summary>
-    public abstract class CancelableServiceBase : ICancelableServiceBase
+    /// <inheritdoc cref="ServiceBase" />
+    /// <inheritdoc cref="ICancelableServiceBase" />
+    public abstract class CancelableServiceBase : ServiceBase, ICancelableServiceBase
     {
-        private CancellationTokenSource _cancellationTokenSource;
-        private Task _task;
         private bool _disposed;
-
-        /// <summary>
-        /// Process - The Process will run in a separate Task/Thread, please check the cancellation periodically to exit gracefully when canceled
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation Token</param>
-        protected abstract void Process(CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Called after the Process has stopped, use this to dispose of objects and close connections etc.
-        /// </summary>
-        protected virtual void Clean() { }
+        private CancellationTokenSource _cancellationTokenSource;
+        private CancellationTokenRegistration _cancellationTokenRegistration;
+        private Task _task;
 
         /// <inheritdoc />
-        /// <summary>
-        /// Start the Service
-        /// </summary>
-        public void Start()
+        public new void Start()
         {
-            _cancellationTokenSource = new CancellationTokenSource();
-            _task = new TaskFactory(_cancellationTokenSource.Token).StartNew(Process, _cancellationTokenSource.Token);
+            InternalStart(false, null);
         }
 
         /// <inheritdoc />
-        /// <summary>
-        /// Start the Service
-        /// </summary>
+        public void Start(CancellationToken cancellationToken)
+        {
+            InternalStart(false, cancellationToken);
+        }
+
+        /// <inheritdoc />
         public void StartSync()
         {
-            _cancellationTokenSource = new CancellationTokenSource();
-            Process();
+            InternalStart(true, null);
         }
 
         /// <inheritdoc />
-        /// <summary>
-        /// Cancel underlying task and stop the service
-        /// </summary>
-        public void Stop()
+        public void StartSync(CancellationToken cancellationToken)
         {
-            _cancellationTokenSource?.Cancel();
+            InternalStart(true, cancellationToken);
+        }
+
+        private void InternalStart(bool sync, CancellationToken? cancellationToken)
+        {
+            if (!Started)
+            {
+                _cancellationTokenSource = new CancellationTokenSource();
+
+                if (cancellationToken != null)
+                    _cancellationTokenRegistration = ((CancellationToken)cancellationToken).Register(Cancel);
+
+                if (!sync)
+                    _task = new TaskFactory().StartNew(Process, _cancellationTokenSource.Token);
+
+                InternalStart();
+
+                Started = true;
+
+                if (sync)
+                    Process(_cancellationTokenSource.Token);
+            }
+        }
+
+        private void Cancel()
+        {
+            if (!_cancellationTokenSource?.IsCancellationRequested ?? false)
+                _cancellationTokenSource?.Cancel();
+
+            _cancellationTokenRegistration.Dispose();
+            _cancellationTokenSource?.Dispose();
+            _cancellationTokenSource = null;
+        }
+
+        /// <inheritdoc />
+        protected override void InternalStop()
+        {
+            Cancel();
 
             if (_task != null)
             {
                 try
                 {
-                    Task.WaitAll(new[] { _task }, 1000000);
+                    Logger.LogInformation($"{Name}: Waiting max. 60 seconds for worker task to complete");
+
+                    Task.WaitAll(new[] { _task }, 60000);
                 }
-                catch (Exception)
+                catch (Exception exception)
                 {
-                    // ignored
+                    Logger.LogWarning(exception, $"{Name}: Exception waiting for worker Task");
                 }
 
                 _task.Dispose();
+                _task = null;
             }
-
-            Clean();
 
             _cancellationTokenSource?.Dispose();
             _cancellationTokenSource = null;
+
+            base.InternalStop();
         }
+
+        /// <summary>
+        /// Service Process
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation Token</param>
+        protected abstract void Process(CancellationToken cancellationToken);
 
         private void Process()
         {
@@ -81,20 +111,19 @@ namespace Grumpy.ServiceBase
         }
 
         /// <inheritdoc />
-        public void Dispose()
+        public new void Dispose()
         {
             Dispose(true);
         }
 
-        [SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed")]  
-        private void Dispose(bool disposing)
+        /// <inheritdoc />
+        protected override void Dispose(bool disposing)
         {
             if (!_disposed)
             {
                 _disposed = true;
 
-                if (disposing)
-                    Stop();
+                base.Dispose(disposing);
             }
         }
     }

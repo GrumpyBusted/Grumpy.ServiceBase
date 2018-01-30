@@ -14,17 +14,17 @@ namespace Grumpy.ServiceBase
         public string InstanceName { get; private set; }
 
         /// <inheritdoc />
-        public string Name { get; private set; }
-
-        /// <inheritdoc />
         protected abstract override void Process(CancellationToken cancellationToken);
 
         /// <inheritdoc />
-        public void Set(HostSettings hostSettings)
+        public HostSettings HostSettings
         {
-            Name = hostSettings.Name;
-            ServiceName = hostSettings.ServiceName;
-            InstanceName = hostSettings.InstanceName;
+            set
+            {
+                Name = value.Name;
+                ServiceName = value.ServiceName;
+                InstanceName = value.InstanceName;
+            }
         }
     }
 }

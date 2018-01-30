@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading;
 
 namespace Grumpy.ServiceBase.Interfaces
 {
@@ -6,21 +6,23 @@ namespace Grumpy.ServiceBase.Interfaces
     /// <summary>
     /// Base class for implementing a cancelable service
     /// </summary>
-    public interface ICancelableServiceBase : IDisposable
+    public interface ICancelableServiceBase : IServiceBase
     {
         /// <summary>
         /// Start Service
         /// </summary>
-        void Start();
-        
+        /// <param name="cancellationToken">Cancellation Token</param>
+        void Start(CancellationToken cancellationToken);
+
         /// <summary>
         /// Run service in this thread
         /// </summary>
         void StartSync();
 
         /// <summary>
-        /// Stop Service
+        /// Run service in this thread
         /// </summary>
-        void Stop();
+        /// <param name="cancellationToken">Cancellation Token</param>
+        void StartSync(CancellationToken cancellationToken);
     }
 }

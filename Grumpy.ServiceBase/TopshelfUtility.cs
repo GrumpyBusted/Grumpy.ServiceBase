@@ -47,7 +47,7 @@ namespace Grumpy.ServiceBase
                 x.RunAsLocalSystem();
             };
         }
-        
+
         /// <summary>
         /// Service Builder
         /// </summary>
@@ -56,9 +56,7 @@ namespace Grumpy.ServiceBase
         /// <returns>The Service</returns>
         private static T Build<T>(HostSettings hostSettings) where T : class, ITopshelfServiceBase, new()
         {
-            var serviceClass = new T();
-
-            serviceClass.Set(hostSettings);
+            var serviceClass = new T { HostSettings = hostSettings };
 
             return serviceClass;
         }

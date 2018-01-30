@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C62349F9-8DA3-4FFC-A3BF-80FD3D52E2AD}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Grumpy.ServiceBase.UnitTests</RootNamespace>
-    <AssemblyName>Grumpy.ServiceBase.UnitTests</AssemblyName>
+    <ProjectGuid>{8D1D4206-2316-409B-82EB-94F601091F6C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Grumpy.ServiceBase.Tester</RootNamespace>
+    <AssemblyName>Grumpy.ServiceBase.Tester</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -34,27 +36,27 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CancelableServiceBaseTests.cs" />
-    <Compile Include="Helper\MyFastCancelableService.cs" />
-    <Compile Include="Helper\MyCancelableService.cs" />
-    <Compile Include="Helper\MyTopshelfService.cs" />
+    <Compile Include="MyCore.cs" />
+    <Compile Include="MyService.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TopshelfServiceBaseTests.cs" />
-    <Compile Include="TopshelfUtilityTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Grumpy.ServiceBase\Grumpy.ServiceBase.csproj">
+      <Project>{B3341849-1652-4177-A6B5-F6F02BF71950}</Project>
+      <Name>Grumpy.ServiceBase</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Grumpy.Common">
       <Version>1.2.7</Version>
     </PackageReference>
-    <PackageReference Include="Grumpy.TestTools">
-      <Version>1.2.2</Version>
+    <PackageReference Include="Microsoft.Extensions.Logging.Console">
+      <Version>1.1.2</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Grumpy.ServiceBase\Grumpy.ServiceBase.csproj">
-      <Project>{b3341849-1652-4177-a6b5-f6f02bf71950}</Project>
-      <Name>Grumpy.ServiceBase</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
