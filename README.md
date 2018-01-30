@@ -24,10 +24,5 @@ public class MyService : TopshelfServiceBase
     {
         // Start your service
     }
-
-    protected override void Clean()
-    {
-        // Clean up when services is stopped
-    }
 }
 ```
