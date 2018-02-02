@@ -3,7 +3,7 @@
 [![nuget](https://img.shields.io/nuget/v/Grumpy.ServiceBase.svg)](https://www.nuget.org/packages/Grumpy.ServiceBase/)
 [![downloads](https://img.shields.io/nuget/dt/Grumpy.ServiceBase.svg)](https://www.nuget.org/packages/Grumpy.ServiceBase/)
 
-# Grumpy.WindowsService
+# Grumpy.ServiceBase
 Base class for building Windows Services, using Topshelf as a Service Host. This base class simplify building
 cancelable windows services.
 
