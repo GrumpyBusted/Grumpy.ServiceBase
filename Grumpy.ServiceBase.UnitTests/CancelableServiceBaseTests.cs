@@ -70,6 +70,15 @@ namespace Grumpy.ServiceBase.UnitTests
             }
         }
 
+        [Fact]
+        public void CanStartWithCancellation()
+        {
+            using (var cut = (ICancelableServiceBase)new MyFastCancelableService())
+            {
+                cut.Start(new CancellationToken());
+            }
+        }
+
         private static ICancelableServiceBase CreateCut()
         {
             return new MyCancelableService();
