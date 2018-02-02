@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using Grumpy.Logging;
 using Microsoft.Extensions.Logging;
 
 namespace Grumpy.ServiceBase.Tester
@@ -14,12 +15,12 @@ namespace Grumpy.ServiceBase.Tester
 
         public void Start(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("MyCore Started!");
+            _logger.Information("MyCore Started!");
         }
 
         public void Stop()
         {
-            _logger.LogInformation("MyCore Stopped!");
+            _logger.Information("MyCore Stopped!");
         }
     }
 }

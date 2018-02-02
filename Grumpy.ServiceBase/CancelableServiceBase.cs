@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Grumpy.ServiceBase.Interfaces;
 using Grumpy.Logging;
-using Microsoft.Extensions.Logging;
 
 namespace Grumpy.ServiceBase
 {
@@ -80,13 +79,13 @@ namespace Grumpy.ServiceBase
             {
                 try
                 {
-                    Logger.LogInformation($"{Name}: Waiting max. 60 seconds for worker task to complete");
+                    Logger.Information("Waiting max. 60 seconds for worker task to complete {ServiceName}", Name);
 
                     Task.WaitAll(new[] { _task }, 60000);
                 }
                 catch (Exception exception)
                 {
-                    Logger.LogWarning(exception, $"{Name}: Exception waiting for worker Task");
+                    Logger.Warning(exception, "Exception waiting for worker Task {ServiceName}", Name);
                 }
 
                 _task.Dispose();

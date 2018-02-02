@@ -1,4 +1,5 @@
 ﻿using Grumpy.Common;
+using Grumpy.Logging;
 using Grumpy.ServiceBase.Interfaces;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -43,7 +44,7 @@ namespace Grumpy.ServiceBase
         /// </summary>
         protected void InternalStart()
         {
-            Logger.LogInformation($"{Name} service started");
+            Logger.Information("Service started {@ServiceName}", Name);
         }
 
         /// <inheritdoc />
@@ -62,7 +63,7 @@ namespace Grumpy.ServiceBase
         /// </summary>
         protected virtual void InternalStop()
         {
-            Logger.LogInformation($"{Name} service stopped");
+            Logger.Information("Service stopped {@ServiceName}", Name);
         }
 
         /// <inheritdoc />
