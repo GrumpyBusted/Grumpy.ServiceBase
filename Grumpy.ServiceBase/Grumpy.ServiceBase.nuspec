@@ -15,8 +15,8 @@
         <language>en-US</language>
         <copyright>Copyright © Busted-Janum 2018</copyright>
         <dependencies>
-            <dependency id="Grumpy.Common" version="1.2.7" />
-            <dependency id="Grumpy.Logging" version="1.0.5" />
+            <dependency id="Grumpy.Common" version="2.0.0" />
+            <dependency id="Grumpy.Logging" version="2.0.0" />
             <dependency id="Topshelf" version="[3.3.1]" />
         </dependencies>
     </metadata>
