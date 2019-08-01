@@ -11,7 +11,7 @@ before_build:
 build_script:
   - ps: dotnet build --no-restore --configuration="release" -p:Version="$env:APPVEYOR_BUILD_VERSION"
 after_build:
-  - ps: dotnet pack --no-build --include-symbols --include-source --verbosity=normal -p:PackageVersion="$env:APPVEYOR_BUILD_VERSION" --configuration="release"
+  - ps: dotnet pack Grumpy.ServiceBase/Grumpy.ServiceBase.csproj --no-build --include-symbols --include-source --verbosity=normal -p:PackageVersion="$env:APPVEYOR_BUILD_VERSION" --configuration="release"
 test_script:
   - cmd: "\"%USERPROFILE%\\.nuget\\packages\\OpenCover\\4.7.922\\tools\\OpenCover.Console.exe\" -register:user -oldStyle -target:\"%ProgramFiles%\\dotnet\\dotnet.exe\" -targetargs:\"test Grumpy.Common.UnitTests\\Grumpy.ServiceBase.UnitTests.csproj\" -output:\"coverage.xml\" -filter:\"+[Grumpy.ServiceBase*]* -[Grumpy.ServiceBase.UnitTests*]*\""
 after_test:
