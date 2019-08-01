@@ -1,65 +1,37 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B3341849-1652-4177-A6B5-F6F02BF71950}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Grumpy.ServiceBase</RootNamespace>
-    <AssemblyName>Grumpy.ServiceBase</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Anders Busted-Janum</Authors>
+    <Company>GrumpyBusted</Company>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Description>Windows Service Base using Topshelf as a ServiceRunner. Base class for building Windows Services, using Topshelf as a Service Host. This base class simplify building cancelable windows services.</Description>
+    <Copyright>Copyright © Busted-Janum 2019</Copyright>
+    <PackageTags>topshelf servicehost</PackageTags>
+    <RepositoryUrl>https://github.com/GrumpyBusted/Grumpy.ServiceBase</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/GrumpyBusted/Grumpy.ServiceBase</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Grumpy.ServiceBase.xml</DocumentationFile>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>.\bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Grumpy.ServiceBase.xml</DocumentationFile>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>.\bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <PackageReference Include="Grumpy.Common" Version="3.0.17" />
+    <PackageReference Include="Grumpy.Logging" Version="3.0.1" />
+    <PackageReference Include="Topshelf" Version="4.2.1" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="ServiceBase.cs" />
-    <Compile Include="CancelableServiceBase.cs" />
-    <Compile Include="Interfaces\ICancelableServiceBase.cs" />
-    <Compile Include="Interfaces\IServiceBase.cs" />
-    <Compile Include="Interfaces\ITopshelfServiceBase.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TopshelfUtility.cs" />
-    <Compile Include="TopshelfServiceBase.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Grumpy.Common">
-      <Version>2.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Grumpy.Logging">
-      <Version>2.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Topshelf">
-      <Version>3.3.1</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Grumpy.ServiceBase.nuspec">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
     </None>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging.Console;
 
 namespace Grumpy.ServiceBase.Tester
 {
-    internal class MyService : TopshelfServiceBase, IDisposable
+    internal sealed class MyService : TopshelfServiceBase, IDisposable
     {
         private bool _disposed;
         private readonly MyCore _myCore;
